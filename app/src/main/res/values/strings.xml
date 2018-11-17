@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Carato</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="register_now">Register now</string>
+    <string name="register">Register</string>
+    <string name="full_name">Full name</string>
+    <string name="email">Email</string>
+    <string name="gender">Gender</string>
+    <string name="birth_date">Birth date</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="name">Name</string>
+    <string name="model">Model</string>
+    <string name="type">Type</string>
+    <string name="administrator">Administrator</string>
+    <string name="user">User</string>
+    <string name="login_as">Login as</string>
+    <string name="or">Or</string>
+    <string name="seats">Seats</string>
+    <string name="doors">Doors</string>
+    <string name="transmission">Transmission</string>
+    <string name="rent_cost_day">Rent cost / day</string>
+</resources>

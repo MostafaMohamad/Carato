@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/editText_cname"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:background="@drawable/border_shape"
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:inputType="textPersonName"
+        android:hint="@string/name"
+        app:layout_constraintBottom_toTopOf="@+id/editText_cmodel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/car_imageUpload"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/editText_cmodel"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/border_shape"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/model"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/editText_ctype"
+        app:layout_constraintEnd_toEndOf="@+id/editText_cname"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/editText_cname"
+        app:layout_constraintTop_toBottomOf="@+id/editText_cname" />
+
+    <Spinner
+        android:id="@+id/editText_ctype"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/border_shape"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/type"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/editText_cseats"
+        app:layout_constraintEnd_toEndOf="@+id/editText_cmodel"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/editText_cmodel"
+        app:layout_constraintTop_toBottomOf="@+id/editText_cmodel" />
+
+    <EditText
+        android:id="@+id/editText_cseats"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/border_shape"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/seats"
+        android:inputType="numberSigned"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/editText_cdoors"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_ctype" />
+
+    <EditText
+        android:id="@+id/editText_cdoors"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/border_shape"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/doors"
+        android:inputType="numberSigned"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/editText_ctrans"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_cseats" />
+
+    <Spinner
+        android:id="@+id/editText_ctrans"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/border_shape"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/transmission"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/editText_cent"
+        app:layout_constraintEnd_toEndOf="@+id/editText_cdoors"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/editText_cdoors"
+        app:layout_constraintTop_toBottomOf="@+id/editText_cdoors" />
+
+    <EditText
+        android:id="@+id/editText_cent"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/border_shape"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/rent_cost_day"
+        android:inputType="number"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_ctrans" />
+
+    <ImageView
+        android:id="@+id/car_imageUpload"
+        android:layout_width="144dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_car" />
+</android.support.constraint.ConstraintLayout>
