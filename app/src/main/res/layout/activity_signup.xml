@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignupActivity">
+    tools:context=".activities.SignupActivity">
 
     <ScrollView
         android:layout_width="0dp"
@@ -27,6 +27,7 @@
                 android:layout_marginRight="24dp"
                 android:background="@drawable/border_shape"
                 android:ems="10"
+                android:gravity="center"
                 android:inputType="textPersonName"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintBottom_toTopOf="@+id/editText_uname"
@@ -53,6 +54,7 @@
                 android:layout_marginRight="24dp"
                 android:background="@drawable/border_shape"
                 android:textColor="@color/colorPrimary"
+                android:gravity="center"
                 app:layout_constraintBottom_toTopOf="@+id/editText_birth"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -68,25 +70,29 @@
                 android:layout_marginRight="24dp"
                 android:background="@drawable/border_shape"
                 android:ems="10"
+                android:gravity="center"
                 android:inputType="textPassword"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintBottom_toTopOf="@+id/editText_cpass"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editText_birth" />
 
-            <EditText
+            <TextView
                 android:id="@+id/editText_birth"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="42dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
                 android:background="@drawable/border_shape"
                 android:ems="10"
-                android:inputType="date"
+                android:gravity="center"
+                android:hint="@string/choose_your_birth_date"
                 android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@+id/editText_pass"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/spinner_gender"
                 app:layout_constraintTop_toBottomOf="@+id/spinner_gender" />
 
             <TextView
@@ -121,6 +127,7 @@
                 android:layout_marginRight="24dp"
                 android:background="@drawable/border_shape"
                 android:ems="10"
+                android:gravity="center"
                 android:inputType="textPassword"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -135,6 +142,7 @@
                 android:layout_marginRight="24dp"
                 android:background="@drawable/border_shape"
                 android:ems="10"
+                android:gravity="center"
                 android:inputType="textPersonName"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintBottom_toTopOf="@+id/editText_email"
@@ -150,6 +158,7 @@
                 android:layout_marginRight="24dp"
                 android:background="@drawable/border_shape"
                 android:ems="10"
+                android:gravity="center"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintBottom_toTopOf="@+id/spinner_gender"
@@ -207,8 +216,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
+        android:onClick="RegisterUser"
         android:text="@string/register"
         android:textColor="#FFF"
+        android:enabled="false"
+        android:alpha=".5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

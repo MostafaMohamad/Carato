@@ -1,7 +1,9 @@
-package project.aut.carato;
+package project.aut.carato.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import project.aut.carato.R;
 
 public class CarListActivity extends AppCompatActivity {
 
