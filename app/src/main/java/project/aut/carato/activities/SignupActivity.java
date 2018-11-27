@@ -1,6 +1,7 @@
 package project.aut.carato.activities;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -121,6 +122,9 @@ public class SignupActivity extends AppCompatActivity {
 
         mydb.InsertUser(user);
 
+        Intent intent = new Intent(SignupActivity.this, CarListActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     public boolean PassConfirm() {
