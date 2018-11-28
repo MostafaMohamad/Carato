@@ -14,17 +14,19 @@
         <activity android:name=".activities.MainActivity" />
         <activity
             android:name=".activities.SplashActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".activities.SignupActivity" />
+        <activity android:name=".activities.CarDetailsActivity">
+        </activity>
+        <activity android:name=".activities.CarListActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".activities.SignupActivity" />
-        <activity android:name=".activities.CarDetailsActivity">
-        </activity>
-        <activity android:name=".activities.CarListActivity" />
         <activity android:name=".activities.LoginTypeActivity" />
     </application>
 

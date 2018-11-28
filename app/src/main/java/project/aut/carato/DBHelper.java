@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 public class DBHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "CaratoDB.db";
@@ -24,7 +26,10 @@ public class DBHelper extends SQLiteOpenHelper {
                 "c_seats text," +
                 "c_doors text," +
                 "c_transmission text," +
-                "c_rent text)");
+                "c_rent text," +
+                "c_image blob," +
+                "c_color," +
+                "c_class)");
 
         db.execSQL("CREATE TABLE users" +
                 "(u_id integer PRIMARY KEY," +
@@ -79,5 +84,31 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM users WHERE u_uname='"+ uname + "'AND u_type = 'admin'",null);
 
         return cursor.getCount()>0;
+    }
+
+    public ArrayList<Car> GetAllCars(){
+        ArrayList<Car> cars = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM cars",null);
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+
+            cars.add(new Car(cursor.getString(cursor.getColumnIndex("c_name")),
+                    cursor.getString(cursor.getColumnIndex("c_model")),
+                    cursor.getString(cursor.getColumnIndex("c_type")),
+                    cursor.getString(cursor.getColumnIndex("c_seats")),
+                    cursor.getString(cursor.getColumnIndex("c_doors")),
+                    cursor.getString(cursor.getColumnIndex("c_transmission")),
+                    cursor.getString(cursor.getColumnIndex("c_rent")),
+                    cursor.getBlob(cursor.getColumnIndex("c_image")),
+                    cursor.getString(cursor.getColumnIndex("c_color")),
+                    cursor.getString(cursor.getColumnIndex("c_class"))));
+
+            cursor.moveToNext();
+        }
+
+        return cars;
     }
 }
