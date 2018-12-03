@@ -28,8 +28,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 "c_transmission text," +
                 "c_rent text," +
                 "c_image blob," +
-                "c_color," +
-                "c_class)");
+                "c_color text," +
+                "c_class text)");
 
         db.execSQL("CREATE TABLE users" +
                 "(u_id integer PRIMARY KEY," +
@@ -40,12 +40,18 @@ public class DBHelper extends SQLiteOpenHelper {
                 "u_birth text," +
                 "u_pass text," +
                 "u_type text)");
+
+        db.execSQL("CREATE TABLE booking" +
+                "(bookin_id integer PRIMARY KEY," +
+                "c_id integer," +
+                "u_id integer)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS cars");
         db.execSQL("DROP TABLE IF EXISTS users");
+        db.execSQL("DROP TABLE IF EXISTS booking");
         onCreate(db);
     }
 

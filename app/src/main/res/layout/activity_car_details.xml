@@ -26,7 +26,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/book_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3">
@@ -192,11 +192,12 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/book_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Book now"
         android:background="@color/colorPrimary"
+        android:onClick="BookNow"
+        android:text="Book now"
         android:textColor="#FFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

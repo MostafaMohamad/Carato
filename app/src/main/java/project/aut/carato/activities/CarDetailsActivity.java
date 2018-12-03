@@ -3,12 +3,17 @@ package project.aut.carato.activities;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import project.aut.carato.Car;
 import project.aut.carato.R;
@@ -49,5 +54,17 @@ public class CarDetailsActivity extends AppCompatActivity {
         image.setImageBitmap(bmp);
 
 
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void BookNow(View view) {
+        LocalDate start = LocalDate.of(2016,1,1);
+        LocalDate end = LocalDate.of(2016,1,15);
+        LocalDate wanted = LocalDate.of(2016,1,16);
+
+        Boolean containsWanted = ( ! wanted.isBefore( start ) ) && ( wanted.isBefore( end ) ) ;
+
+        if (containsWanted)
+            Toast.makeText(this, "yes", Toast.LENGTH_SHORT).show();
     }
 }

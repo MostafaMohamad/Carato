@@ -23,6 +23,7 @@
     <string name="transmission">Transmission</string>
     <string name="rent_cost_day">Rent cost / day</string>
     <string name="choose_your_birth_date">Choose your birth date</string>
+    <string name="search">Search</string>
 
     <string-array name="gender">
         <item>Male</item>

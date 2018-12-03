@@ -1,12 +1,19 @@
 package project.aut.carato.activities;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.support.v7.widget.SearchView;
 import android.widget.Toast;
+import android.app.SearchManager;
+import android.widget.SearchView.OnQueryTextListener;
 
 import java.util.ArrayList;
 
@@ -29,6 +36,7 @@ public class CarListActivity extends AppCompatActivity {
         
         mydb = new DBHelper(this);
         listView = findViewById(R.id.car_Listview);
+        listView.setTextFilterEnabled(true);
         
         PopulateListview();
     }
@@ -48,5 +56,32 @@ public class CarListActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search, menu);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.listsearch).getActionView();
+
+        assert searchManager != null;
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconifiedByDefault(false);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                carsAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+        return true;
     }
 }
