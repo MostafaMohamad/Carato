@@ -94,7 +94,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/edit_old_password"
         android:layout_width="0dp"
         android:layout_height="36dp"
         android:layout_marginTop="32dp"
@@ -115,7 +115,7 @@
         android:layout_marginRight="16dp"
         android:text="Day(s)"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="@+id/editText"
-        app:layout_constraintEnd_toStartOf="@+id/editText"
-        app:layout_constraintTop_toTopOf="@+id/editText" />
+        app:layout_constraintBottom_toBottomOf="@+id/edit_old_password"
+        app:layout_constraintEnd_toStartOf="@+id/edit_old_password"
+        app:layout_constraintTop_toTopOf="@+id/edit_old_password" />
 </android.support.constraint.ConstraintLayout>
