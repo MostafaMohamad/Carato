@@ -151,5 +151,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    public void InfoUpdate(int uid, String fname, String email){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("UPDATE users SET u_name='"+fname+"', u_email='"+email+"' WHERE u_id ='"+uid+"'",null);
+        cursor.moveToFirst();
+    }
+
 
 }
