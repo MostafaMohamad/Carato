@@ -62,7 +62,14 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     public void SaveChanges(View view) {
-        Intent intent = new Intent(this,MainActivity.class);
+        UpdateInfo();
+        Intent intent = new Intent(this,CarListActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void ChangePass(View view){
+        Intent intent = new Intent(this,ResetPasswordActivity.class);
         intent.putExtra("pwd",pwd);
         startActivity(intent);
     }

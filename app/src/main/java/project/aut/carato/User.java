@@ -10,7 +10,7 @@ public class User {
     String pass;
     String type;
 
-    public User(int uid,String name, String uname, String email, String gender, String birth, String pass, String type) {
+    public User(String name, String uname, String email, String gender, String birth, String pass, String type) {
         this.name = name;
         this.uname = uname;
         this.email = email;
@@ -18,7 +18,6 @@ public class User {
         this.birth = birth;
         this.pass = pass;
         this.type = type;
-        this.uid = uid;
     }
 
     public String getName() {
