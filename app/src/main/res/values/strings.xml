@@ -32,6 +32,9 @@
     <string name="confirm">Confirm</string>
     <string name="save">Save</string>
     <string name="my_profile">My Profile</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_pwd">Confirm Pwd</string>
 
     <string-array name="gender">
         <item>Male</item>
