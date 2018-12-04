@@ -43,16 +43,16 @@ public class CarsAdapter extends ArrayAdapter<Car> implements Filterable {
 
             final Car currentCar = carList.get(position);
 
-            TextView name = (TextView)listItem.findViewById(R.id.name_txt);
+            TextView name = listItem.findViewById(R.id.name_txt);
             name.setText(currentCar.getName());
 
-            TextView model = (TextView)listItem.findViewById(R.id.model_txt);
+            TextView model = listItem.findViewById(R.id.model_txt);
             model.setText(currentCar.getModel());
 
-            TextView type = (TextView)listItem.findViewById(R.id.type_txt);
+            TextView type = listItem.findViewById(R.id.type_txt);
             type.setText(currentCar.getType());
 
-            ImageView image = (ImageView)listItem.findViewById(R.id.imageView2);
+            ImageView image = listItem.findViewById(R.id.imageView2);
             byte[] bytes = currentCar.getImage();
             Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
             image.setImageBitmap(bmp);

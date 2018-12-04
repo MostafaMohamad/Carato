@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import project.aut.carato.DBHelper;
 import project.aut.carato.R;
+import project.aut.carato.SharedPrefs;
 
 public class MainActivity extends AppCompatActivity {
     public DBHelper mydb;
@@ -25,17 +26,21 @@ public class MainActivity extends AppCompatActivity {
     public void Check(String username, String Password){
         boolean logged =  mydb.GetUserCredentials(username, Password);
         if (logged && Admin()){
+            String uid = Integer.toString(mydb.GetUserId(username));
+            SharedPrefs.getInstance(this).setUserId(uid);
             Intent intent = new Intent(this,LoginTypeActivity.class);
             startActivity(intent);
             finish();
 
         }else if (logged && !Admin()){
+            String uid = Integer.toString(mydb.GetUserId(username));
+            SharedPrefs.getInstance(this).setUserId(uid);
             Intent intent = new Intent(this,CarListActivity.class);
             startActivity(intent);
             finish();
 
         }else {
-            Toast.makeText(this, "Wrong credentials!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Wrong credentials", Toast.LENGTH_SHORT).show();
         }
     }
 

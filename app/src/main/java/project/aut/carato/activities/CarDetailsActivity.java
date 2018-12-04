@@ -19,6 +19,7 @@ import project.aut.carato.Car;
 import project.aut.carato.R;
 
 public class CarDetailsActivity extends AppCompatActivity {
+    Car car;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class CarDetailsActivity extends AppCompatActivity {
         TextView cClass = findViewById(R.id.cClass_txt);
 
         Intent intent = getIntent();
-        Car car = (Car)intent.getSerializableExtra("current");
+        car = (Car)intent.getSerializableExtra("current");
 
         trans.setText(car.getTransmission());
         rent.setText(car.getRent());
@@ -58,13 +59,8 @@ public class CarDetailsActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void BookNow(View view) {
-        LocalDate start = LocalDate.of(2016,1,1);
-        LocalDate end = LocalDate.of(2016,1,15);
-        LocalDate wanted = LocalDate.of(2016,1,16);
-
-        Boolean containsWanted = ( ! wanted.isBefore( start ) ) && ( wanted.isBefore( end ) ) ;
-
-        if (containsWanted)
-            Toast.makeText(this, "yes", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(CarDetailsActivity.this,ReservationActivity.class);
+        intent.putExtra("reserve",car);
+        startActivity(intent);
     }
 }

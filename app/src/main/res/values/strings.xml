@@ -24,6 +24,14 @@
     <string name="rent_cost_day">Rent cost / day</string>
     <string name="choose_your_birth_date">Choose your birth date</string>
     <string name="search">Search</string>
+    <string name="slideshow">Slideshow</string>
+    <string name="tools">Tools</string>
+    <string name="gallery">Gallery</string>
+    <string name="logout">Logout</string>
+    <string name="reservations">My Reservations</string>
+    <string name="confirm">Confirm</string>
+    <string name="save">Save</string>
+    <string name="my_profile">My Profile</string>
 
     <string-array name="gender">
         <item>Male</item>

@@ -41,10 +41,12 @@ public class DBHelper extends SQLiteOpenHelper {
                 "u_pass text," +
                 "u_type text)");
 
-        db.execSQL("CREATE TABLE booking" +
-                "(bookin_id integer PRIMARY KEY," +
+        db.execSQL("CREATE TABLE reservation" +
+                "(reservation_id integer PRIMARY KEY," +
                 "c_id integer," +
-                "u_id integer)");
+                "u_id integer," +
+                "reserved_from text," +
+                "reserved_to text)");
     }
 
     @Override
@@ -59,6 +61,17 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery("SELECT * FROM users WHERE u_uname='" + uname + "'AND u_pass='" + upass + "'", null);
         return res.getCount() > 0;
+    }
+
+    public int GetUserId(String uname){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT u_id FROM users WHERE u_uname ='"+uname+"'",null);
+
+        if (cursor.getCount()>0){
+            cursor.moveToFirst();
+            return cursor.getInt(0);
+        }else
+            return -1;
     }
 
     public boolean InsertUser(User user) {
@@ -117,4 +130,26 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return cars;
     }
+
+    public User GetUserById(int id){
+        User user = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE u_id='"+id+"'",null);
+        cursor.moveToFirst();
+
+        while (cursor.getCount()>0){
+             user = new User(cursor.getInt(cursor.getColumnIndex("u_id")),
+                    cursor.getString(cursor.getColumnIndex("u_name")),
+                    cursor.getString(cursor.getColumnIndex("u_uname")),
+                    cursor.getString(cursor.getColumnIndex("u_email")),
+                    cursor.getString(cursor.getColumnIndex("u_gender")),
+                    cursor.getString(cursor.getColumnIndex("u_birth")),
+                    cursor.getString(cursor.getColumnIndex("u_pass")),
+                    cursor.getString(cursor.getColumnIndex("u_type")));
+        }
+        return user;
+
+    }
+
+
 }

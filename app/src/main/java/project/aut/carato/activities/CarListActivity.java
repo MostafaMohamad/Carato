@@ -3,10 +3,19 @@ package project.aut.carato.activities;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -28,17 +37,78 @@ public class CarListActivity extends AppCompatActivity {
     private DBHelper mydb;
     private ArrayList<Car> arrayList;
     private CarsAdapter carsAdapter;
+    private DrawerLayout mDrawerLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_list);
+
+        final FloatingActionButton fab = findViewById(R.id.fab);
+
+
+        mDrawerLayout = findViewById(R.id.drawer_layout);
         
         mydb = new DBHelper(this);
         listView = findViewById(R.id.car_Listview);
         listView.setTextFilterEnabled(true);
         
         PopulateListview();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        selectItemDrawer(menuItem);
+
+                        return true;
+                    }
+                });
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (mDrawerLayout.isDrawerOpen(Gravity.START)){
+                    mDrawerLayout.closeDrawers();
+                    fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu));
+                }
+                else {
+                    mDrawerLayout.openDrawer(Gravity.START);
+                    fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_close));
+                }
+
+
+            }
+        });
+
+        mDrawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(@NonNull View view, float v) {
+
+            }
+
+            @Override
+            public void onDrawerOpened(@NonNull View view) {
+                fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_close));
+
+            }
+
+            @Override
+            public void onDrawerClosed(@NonNull View view) {
+                fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu));
+
+            }
+
+            @Override
+            public void onDrawerStateChanged(int i) {
+
+            }
+        });
+
     }
 
     private void PopulateListview() {
@@ -83,5 +153,21 @@ public class CarListActivity extends AppCompatActivity {
         });
 
         return true;
+    }
+
+    public  void selectItemDrawer(MenuItem menuItem){
+        switch (menuItem.getItemId()) {
+            case R.id.nav_reservations:
+                startActivity(new Intent(CarListActivity.this, ReservationActivity.class));
+                break;
+        }
+
+        mDrawerLayout.closeDrawers();
+
+    }
+
+    public void Logout(View view) {
+        Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
+        mDrawerLayout.closeDrawers();
     }
 }
