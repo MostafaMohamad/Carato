@@ -157,5 +157,10 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.moveToFirst();
     }
 
+    public  void changePass(String pass,int uid){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("UPDATE users SET u_pass='"+pass+"' WHERE u_id='"+uid+"'" ,null);
+        cursor.moveToFirst();
+    }
 
 }
