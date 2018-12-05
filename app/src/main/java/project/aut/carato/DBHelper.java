@@ -138,8 +138,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.moveToFirst();
 
         while (cursor.getCount()>0){
-             user = new User(cursor.getInt(cursor.getColumnIndex("u_id")),
-                    cursor.getString(cursor.getColumnIndex("u_name")),
+             user = new User(cursor.getString(cursor.getColumnIndex("u_name")),
                     cursor.getString(cursor.getColumnIndex("u_uname")),
                     cursor.getString(cursor.getColumnIndex("u_email")),
                     cursor.getString(cursor.getColumnIndex("u_gender")),
