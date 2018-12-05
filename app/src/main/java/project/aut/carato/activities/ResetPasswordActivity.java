@@ -19,6 +19,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
     EditText newPass;
     EditText confirmPass;
     DBHelper mydb;
+    int i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
