@@ -79,6 +79,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
         @Override
         public void afterTextChanged(Editable s) {
             CheckEmptyValues();
+            int i = 1;
         }
     };
 
