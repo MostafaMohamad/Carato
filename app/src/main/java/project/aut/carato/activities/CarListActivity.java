@@ -121,9 +121,12 @@ public class CarListActivity extends AppCompatActivity {
     }
 
     private void GetUserId() {
-        String username = getIntent().getStringExtra("uname");
-        String uid = Integer.toString(mydb.GetUserId(username));
-        SharedPrefs.getInstance(this).setUserId(uid);
+        try {
+            String username = getIntent().getStringExtra("uname");
+            String uid = Integer.toString(mydb.GetUserId(username));
+            SharedPrefs.getInstance(this).setUserId(uid);
+        }catch (Exception ignored){}
+
     }
 
     private void PopulateListview() {
