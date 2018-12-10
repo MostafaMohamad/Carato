@@ -5,6 +5,7 @@ import android.os.Parcelable;
 import java.io.Serializable;
 
 public class Car implements Serializable {
+    int id;
     String name;
     String model;
     String type;
@@ -16,7 +17,8 @@ public class Car implements Serializable {
     String color;
     String cClass;
 
-    public Car (String name, String model, String type, String seats, String doors, String transmission, String rent, byte[] image, String color, String cClass) {
+    public Car (int id, String name, String model, String type, String seats, String doors, String transmission, String rent, byte[] image, String color, String cClass) {
+        this.id = id;
         this.name = name;
         this.model = model;
         this.type = type;
@@ -108,5 +110,13 @@ public class Car implements Serializable {
 
     public void setcClass(String cClass) {
         this.cClass = cClass;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

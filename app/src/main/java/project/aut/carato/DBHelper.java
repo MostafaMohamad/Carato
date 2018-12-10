@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
+import project.aut.carato.activities.Reservation;
+
 public class DBHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "CaratoDB.db";
@@ -114,7 +116,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
         while (!cursor.isAfterLast()) {
 
-            cars.add(new Car(cursor.getString(cursor.getColumnIndex("c_name")),
+            cars.add(new Car(cursor.getInt(cursor.getColumnIndex("c_id")),
+                    cursor.getString(cursor.getColumnIndex("c_name")),
                     cursor.getString(cursor.getColumnIndex("c_model")),
                     cursor.getString(cursor.getColumnIndex("c_type")),
                     cursor.getString(cursor.getColumnIndex("c_seats")),
@@ -157,9 +160,37 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public  void changePass(String pass,int uid){
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("UPDATE users SET u_pass='"+pass+"' WHERE u_id='"+uid+"'" ,null);
         cursor.moveToFirst();
+    }
+
+    public boolean ReserveCar(int cid,int uid, String from , String to){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("c_id",cid);
+        contentValues.put("u_id",uid);
+        contentValues.put("reserved_from",from);
+        contentValues.put("reserved_to",to);
+
+        db.insert("reservation",null,contentValues);
+        return true;
+    }
+
+    public Reservation getCarInfo(int carId){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM reservation WHERE c_id='"+carId+"'",null);
+        cursor.moveToFirst();
+
+        if (cursor.getCount() > 0) {
+            return new Reservation(cursor.getInt(cursor.getColumnIndex("reservation_id")),
+                    cursor.getInt(cursor.getColumnIndex("c_id")),
+                    cursor.getInt(cursor.getColumnIndex("u_id")),
+                    cursor.getString(cursor.getColumnIndex("reserved_from")),
+                    cursor.getString(cursor.getColumnIndex("reserved_to")));
+        } else
+            return null;
+
     }
 
 }

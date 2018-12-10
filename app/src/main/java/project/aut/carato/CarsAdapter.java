@@ -90,7 +90,8 @@ public class CarsAdapter extends ArrayAdapter<Car> implements Filterable {
                             .contains(constraint.toString().toUpperCase())) ||
                             (mStringFilterList.get(i).getType().toUpperCase()
                             .contains(constraint.toString().toUpperCase()))){
-                        Car filtered = new Car(mStringFilterList.get(i).getName(),
+                        Car filtered = new Car(mStringFilterList.get(i).getId(),
+                                mStringFilterList.get(i).getName(),
                                 mStringFilterList.get(i).getModel(),
                                 mStringFilterList.get(i).getType(),
                                 mStringFilterList.get(i).getSeats(),
