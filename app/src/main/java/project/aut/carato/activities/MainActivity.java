@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this,LoginTypeActivity.class);
             startActivity(intent);
             finish();
+            SharedPrefs.getInstance(this).setLogged(true);
 
         }else if (logged && !Admin()){
             String uid = Integer.toString(mydb.GetUserId(username));
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this,CarListActivity.class);
             startActivity(intent);
             finish();
+            SharedPrefs.getInstance(this).setLogged(true);
 
         }else {
             Toast.makeText(this, "Wrong credentials", Toast.LENGTH_SHORT).show();

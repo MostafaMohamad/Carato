@@ -15,23 +15,20 @@
         <activity
             android:name=".activities.SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".activities.SignupActivity" />
         <activity android:name=".activities.CarDetailsActivity" />
-        <activity android:name=".activities.CarListActivity">
-
-        </activity>
+        <activity android:name=".activities.CarListActivity"></activity>
         <activity android:name=".activities.LoginTypeActivity" />
         <activity android:name=".activities.ReservationActivity" />
         <activity android:name=".activities.ProfileActivity" />
-        <activity android:name=".activities.ResetPasswordActivity"></activity>
+        <activity android:name=".activities.ResetPasswordActivity" />
+        <activity android:name=".activities.ReservedCarsActivity"></activity>
     </application>
 
 </manifest>

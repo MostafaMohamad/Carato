@@ -22,7 +22,6 @@ public class ProfileActivity extends AppCompatActivity {
     EditText email;
 
     private String pwd;
-
     DBHelper mydb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +61,13 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     public void SaveChanges(View view) {
-        Intent intent = new Intent(this,MainActivity.class);
+        UpdateInfo();
+        Intent intent = new Intent(this,CarListActivity.class);
+        startActivity(intent);
+    }
+
+    public void ChangePass(View view) {
+        Intent intent = new Intent(this,ResetPasswordActivity.class);
         intent.putExtra("pwd",pwd);
         startActivity(intent);
     }

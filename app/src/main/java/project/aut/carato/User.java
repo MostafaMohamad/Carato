@@ -1,7 +1,6 @@
 package project.aut.carato;
 
 public class User {
-    int uid;
     String name;
     String uname;
     String email;
@@ -76,11 +75,4 @@ public class User {
         this.type = type;
     }
 
-    public int getUid() {
-        return uid;
-    }
-
-    public void setUid(int uid) {
-        this.uid = uid;
-    }
 }

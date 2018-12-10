@@ -6,12 +6,9 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,9 +17,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.support.v7.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
-import android.app.SearchManager;
-import android.widget.SearchView.OnQueryTextListener;
 
 import java.util.ArrayList;
 
@@ -30,6 +26,8 @@ import project.aut.carato.Car;
 import project.aut.carato.CarsAdapter;
 import project.aut.carato.DBHelper;
 import project.aut.carato.R;
+import project.aut.carato.SharedPrefs;
+import project.aut.carato.User;
 
 public class CarListActivity extends AppCompatActivity {
     
@@ -45,12 +43,15 @@ public class CarListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_list);
 
+
+
         final FloatingActionButton fab = findViewById(R.id.fab);
-
-
         mDrawerLayout = findViewById(R.id.drawer_layout);
         
         mydb = new DBHelper(this);
+
+
+
         listView = findViewById(R.id.car_Listview);
         listView.setTextFilterEnabled(true);
         
@@ -109,6 +110,20 @@ public class CarListActivity extends AppCompatActivity {
             }
         });
 
+        GetUserId();
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView fname = headerView.findViewById(R.id.profile_name_txt);
+        User mUser = mydb.GetUserById(Integer.valueOf(SharedPrefs.getInstance(this).getUserId()));
+        fname.setText(mUser.getName());
+
+
+    }
+
+    private void GetUserId() {
+        String username = getIntent().getStringExtra("uname");
+        String uid = Integer.toString(mydb.GetUserId(username));
+        SharedPrefs.getInstance(this).setUserId(uid);
     }
 
     private void PopulateListview() {
@@ -126,6 +141,8 @@ public class CarListActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -158,7 +175,10 @@ public class CarListActivity extends AppCompatActivity {
     public  void selectItemDrawer(MenuItem menuItem){
         switch (menuItem.getItemId()) {
             case R.id.nav_reservations:
-                startActivity(new Intent(CarListActivity.this, ReservationActivity.class));
+                startActivity(new Intent(CarListActivity.this, ReservedCarsActivity.class));
+                break;
+            case R.id.nav_profile:
+                startActivity(new Intent(CarListActivity.this,ProfileActivity.class));
                 break;
         }
 
@@ -167,7 +187,10 @@ public class CarListActivity extends AppCompatActivity {
     }
 
     public void Logout(View view) {
-        Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
         mDrawerLayout.closeDrawers();
+        SharedPrefs.getInstance(this).ClearSharedPrefs();
+        Intent intent = new Intent(this,SplashActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

@@ -101,9 +101,30 @@ public class ReservationActivity extends AppCompatActivity {
                 Button toBtn = findViewById(R.id.to_btn);
                 toBtn.setEnabled(true);
                 toBtn.setAlpha(1f);
+                CalculateRent();
 
             }
         });
+
+        to.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                CalculateRent();
+
+            }
+        });
+
 
     }
 
@@ -151,10 +172,48 @@ public class ReservationActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-     /*String[] splitedVal = Date.split("-");
-        String s1 = splitedVal[0];
-        String s2 = splitedVal[1];
-        String s3 = splitedVal[2];
+    public void CalculateRent(){
+       String s1 =  from.getText().toString();
+       String s2 = to.getText().toString();
+       Button res = findViewById(R.id.res_btn);
 
-        Toast.makeText(this, s3, Toast.LENGTH_SHORT).show();*/
+       if (s2.length()>0) {
+           Calendar fromDate = Calendar.getInstance();
+           Calendar toDate = Calendar.getInstance();
+
+           String[] splitS1 = s1.split("-");
+           String[] splitS2 = s2.split("-");
+
+           fromDate.set(Integer.parseInt(splitS1[2]), Integer.parseInt(splitS1[1]), Integer.parseInt(splitS1[0]));
+           toDate.set(Integer.parseInt(splitS2[2]), Integer.parseInt(splitS2[1]), Integer.parseInt(splitS2[0]));
+           long duration = ((toDate.getTimeInMillis() - fromDate.getTimeInMillis()) / 86400000) + 1;
+
+           Intent intent = getIntent();
+           Car car = (Car) intent.getSerializableExtra("reserve");
+
+           int total = Integer.parseInt(car.getRent()) * (int) duration;
+
+           TextView totalRent = findViewById(R.id.totat_txt);
+           totalRent.setText(String.valueOf(total) + "$");
+
+           if (total < 0){
+               res.setAlpha(.5f);
+               res.setEnabled(false);
+               totalRent.setText("");
+           }else {
+               res.setAlpha(1f);
+               res.setEnabled(true);
+           }
+    }else {
+           res.setAlpha(.5f);
+           res.setEnabled(false);
+       }
+
+
+
+
+
+    }
+
+
 }

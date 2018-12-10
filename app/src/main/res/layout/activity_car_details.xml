@@ -139,7 +139,7 @@
                 android:layout_marginLeft="32dp"
                 android:text="ttv"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView15"
-                app:layout_constraintStart_toStartOf="@+id/car_name_txt" />
+                app:layout_constraintStart_toEndOf="@+id/textView21" />
 
             <TextView
                 android:id="@+id/cClass_txt"

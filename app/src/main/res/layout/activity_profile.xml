@@ -84,7 +84,6 @@
                 android:layout_marginRight="8dp"
                 android:background="@drawable/border_shape"
                 android:ems="10"
-                android:enabled="false"
                 android:gravity="center"
                 android:inputType="textPersonName"
                 android:textColor="@color/colorPrimaryDark"

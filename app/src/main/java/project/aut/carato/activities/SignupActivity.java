@@ -123,6 +123,7 @@ public class SignupActivity extends AppCompatActivity {
         mydb.InsertUser(user);
 
         Intent intent = new Intent(SignupActivity.this, CarListActivity.class);
+        intent.putExtra("uname",username.getText().toString());
         startActivity(intent);
         finish();
     }

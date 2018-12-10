@@ -135,21 +135,22 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public User GetUserById(int id){
-        User user = null;
+
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM users WHERE u_id='"+id+"'",null);
         cursor.moveToFirst();
 
-        while (cursor.getCount()>0){
-             user = new User(cursor.getString(cursor.getColumnIndex("u_name")),
+        if (cursor.getCount()>0){
+             User user = new User(cursor.getString(cursor.getColumnIndex("u_name")),
                     cursor.getString(cursor.getColumnIndex("u_uname")),
                     cursor.getString(cursor.getColumnIndex("u_email")),
                     cursor.getString(cursor.getColumnIndex("u_gender")),
                     cursor.getString(cursor.getColumnIndex("u_birth")),
                     cursor.getString(cursor.getColumnIndex("u_pass")),
                     cursor.getString(cursor.getColumnIndex("u_type")));
-        }
-        return user;
+            return user;
+        }else return null;
+
 
     }
 
@@ -191,6 +192,42 @@ public class DBHelper extends SQLiteOpenHelper {
         } else
             return null;
 
+    }
+
+    public ArrayList<ReservedCar> GetReservedCars(int uid){
+        ArrayList<ReservedCar> reservedCars = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM cars,reservation " +
+                "where cars.c_id = reservation.c_id and reservation.u_id ='"+ uid+"'",null);
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+
+            reservedCars.add(new ReservedCar(
+
+                    new Car(cursor.getInt(cursor.getColumnIndex("c_id")),
+                    cursor.getString(cursor.getColumnIndex("c_name")),
+                    cursor.getString(cursor.getColumnIndex("c_model")),
+                    cursor.getString(cursor.getColumnIndex("c_type")),
+                    cursor.getString(cursor.getColumnIndex("c_seats")),
+                    cursor.getString(cursor.getColumnIndex("c_doors")),
+                    cursor.getString(cursor.getColumnIndex("c_transmission")),
+                    cursor.getString(cursor.getColumnIndex("c_rent")),
+                    cursor.getBlob(cursor.getColumnIndex("c_image")),
+                    cursor.getString(cursor.getColumnIndex("c_color")),
+                    cursor.getString(cursor.getColumnIndex("c_class"))),
+
+                    new Reservation(cursor.getInt(cursor.getColumnIndex("reservation_id")),
+                    cursor.getInt(cursor.getColumnIndex("c_id")),
+                    cursor.getInt(cursor.getColumnIndex("u_id")),
+                    cursor.getString(cursor.getColumnIndex("reserved_from")),
+                    cursor.getString(cursor.getColumnIndex("reserved_to")))));
+
+            cursor.moveToNext();
+        }
+
+        return reservedCars;
     }
 
 }
