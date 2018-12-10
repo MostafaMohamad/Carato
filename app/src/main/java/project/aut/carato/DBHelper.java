@@ -181,7 +181,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public Reservation getCarInfo(int carId){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM reservation WHERE c_id='"+carId+"'",null);
-        cursor.moveToFirst();
+        cursor.moveToLast();
 
         if (cursor.getCount() > 0) {
             return new Reservation(cursor.getInt(cursor.getColumnIndex("reservation_id")),
