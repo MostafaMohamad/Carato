@@ -22,6 +22,7 @@ import java.util.Date;
 
 import project.aut.carato.DBHelper;
 import project.aut.carato.R;
+import project.aut.carato.SharedPrefs;
 import project.aut.carato.User;
 
 public class SignupActivity extends AppCompatActivity {
@@ -121,9 +122,14 @@ public class SignupActivity extends AppCompatActivity {
                 "0");
 
         mydb.InsertUser(user);
+        GetUserId();
 
+    }
+
+    private void GetUserId() {
+        String uid = Integer.toString(mydb.GetUserId(username.getText().toString()));
+        SharedPrefs.getInstance(this).setUserId(uid);
         Intent intent = new Intent(SignupActivity.this, CarListActivity.class);
-        intent.putExtra("uname",username.getText().toString());
         startActivity(intent);
         finish();
     }

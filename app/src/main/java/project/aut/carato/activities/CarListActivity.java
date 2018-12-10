@@ -110,7 +110,6 @@ public class CarListActivity extends AppCompatActivity {
             }
         });
 
-        GetUserId();
 
         View headerView = navigationView.getHeaderView(0);
         TextView fname = headerView.findViewById(R.id.profile_name_txt);
@@ -120,14 +119,6 @@ public class CarListActivity extends AppCompatActivity {
 
     }
 
-    private void GetUserId() {
-        try {
-            String username = getIntent().getStringExtra("uname");
-            String uid = Integer.toString(mydb.GetUserId(username));
-            SharedPrefs.getInstance(this).setUserId(uid);
-        }catch (Exception ignored){}
-
-    }
 
     private void PopulateListview() {
         arrayList = mydb.GetAllCars();

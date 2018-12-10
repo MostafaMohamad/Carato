@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
             String uid = Integer.toString(mydb.GetUserId(username));
             SharedPrefs.getInstance(this).setUserId(uid);
             Intent intent = new Intent(this,CarListActivity.class);
-            intent.putExtra("uname",username);
             startActivity(intent);
             finish();
             SharedPrefs.getInstance(this).setLogged(true);
